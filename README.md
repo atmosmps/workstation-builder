@@ -8,7 +8,5 @@
 #install_lisplang
 #install_haskkelllang
 
-#install portainer
-#install kubernetes
 # add setp to clean linux pos installation
 ```
