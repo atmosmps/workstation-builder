@@ -1,24 +1,34 @@
 #!/usr/bin/env bash
 
-# Setup focused in Ubuntu Distros
+installation_files_folder="downloaded-installation-files"
 
 start() {
-    sudo apt update
+  mkdir ${installation_files_folder}
+  echo -e "# Installation File Folder\n.${installation_files_folder}/" >> .gitignore
 
-    # Install Ubuntu Restricted Extras
-    sudo apt-get install ubuntu-restricted-extras -y
+  sudo apt update
 
-    # Install
-    sudo apt-get install -y \
-        ca-certificates \
-        curl \
-        gnupg \
-        lsb-release \
-        vim \
-        nano \
-        make \
-        apt-transport-https \
-        build-essential
+  # Install Ubuntu Restricted Extras
+  sudo apt-get install ubuntu-restricted-extras -y
+
+  # Install
+  sudo apt-get install -y \
+      ca-certificates \
+      curl \
+      wget \
+      gnupg \
+      lsb-release \
+      apt-transport-https \
+      build-essential \
+      make
+}
+
+install_vim() {
+  sudo apt-get install vim
+}
+
+install_nano() {
+  sudo apt-get install nano
 }
 
 install_git() {
@@ -27,6 +37,22 @@ install_git() {
   git config --global user.email "atmos.mps@gmail.com"
   git config --global init.defaultBranch main
   # add config to cstomized git log
+}
+
+install_terminal() {
+  sudo apt install terminator -y
+  sudo apt install tmux
+  sudo apt install zsh -y
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  # adicionar step para configurar .zshrc
+}
+
+install_php() {
+  sudo apt install php -y
+}
+
+install_java() {
+  sudo apt-get install openjdk-11-jdk -y
 }
 
 install_snapd() {
@@ -84,8 +110,8 @@ install_spotify() {
 }
 
 install_stremio() {
-  curl -O https://dl.strem.io/shell-linux/v4.4.142/stremio_4.4.142-1_amd64.deb
-  sudo dpkg -i stremio_4.4.142-1_amd64.deb
+  curl -O https://dl.strem.io/shell-linux/v4.4.142/stremio_4.4.142-1_amd64.deb ${installation_files_folder}
+  sudo dpkg -i ${installation_files_folder}/stremio_4.4.142-1_amd64.deb
   sudo apt-get -f install
 }
 
@@ -109,12 +135,40 @@ install_vlc() {
 }
 
 install_wps_office() {
-  curl -O https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10976/wps-office_11.1.0.10976.XA_amd64.deb
-  sudo dpkg -i wps-office_11.1.0.10976.XA_amd64.deb
+  curl -O https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10976/wps-office_11.1.0.10976.XA_amd64.deb ${installation_files_folder}
+  sudo dpkg -i ${installation_files_folder}/wps-office_11.1.0.10976.XA_amd64.deb
 }
 
 install_xmind() {
   sudo snap install xmind
+}
+
+install_google_chromium() {
+  sudo snap install chromium
+}
+
+install_firefox() {
+  sudo apt-get install firefox
+}
+
+install_vs_code() {
+  sudo snap install code --classic
+}
+
+install_intellij() {
+  sudo snap install intellij-idea-community --classic
+}
+
+install_php_storm() {
+  sudo mkdir /opt/jetbrains/
+  curl -O https://download-cdn.jetbrains.com/webide/PhpStorm-2022.1.2.tar.gz ${installation_files_folder}
+  sudo mv ${installation_files_folder}/PhpStorm-20*.tar.gz /opt/jetbrains/
+  sudo tar zxvf /opt/jetbrains/PhpStorm-20*.tar.gz
+  # adicionar step para criação do arquivo.desktop
+}
+
+install_postman() {
+  sudo snap install postman
 }
 
 setup() {
