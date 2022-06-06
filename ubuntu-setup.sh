@@ -55,7 +55,7 @@ install_source_code_pro_font() {
     echo "mkdir -p fontsDir"
     mkdir -p "${fontsDir}"
   else
-    echo "Found fonts dir $fontsDir"
+    echo "Found fonts dir ${fontsDir}"
   fi
 
   wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installation_files_folder}
@@ -72,6 +72,42 @@ install_php() {
 
 install_java() {
   sudo apt-get install openjdk-11-jdk -y
+}
+
+install_nvm() {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  source ~/.zshrc
+}
+
+install_docker_and_docker_compose() {
+  keyringsDir="/etc/apt/keyrings"
+
+  if [ ! -d "${keyringsDir}" ]; then
+    echo "sudo mkdir -p keyringsDir"
+    sudo mkdir -p "${keyringsDir}"
+  else
+    echo "Found keyringsDir dir ${keyringsDir}"
+  fi
+
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+  sudo apt-get update
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+  sudo groupadd docker
+  sudo usermod -aG docker "$USER"
+
+  sudo systemctl enable docker.service
+  sudo systemctl enable containerd.service
+
+  sudo apt-get install docker-compose-plugin
 }
 
 install_snapd() {
