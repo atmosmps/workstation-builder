@@ -22,11 +22,11 @@ start() {
 }
 
 install_git() {
-    sudo apt install git -y
-    git config --global user.name "atmosmps"
-    git config --global user.email "atmos.mps@gmail.com"
-    git config --global init.defaultBranch main
-    # add config to cstomized git log
+  sudo apt install git -y
+  git config --global user.name "atmosmps"
+  git config --global user.email "atmos.mps@gmail.com"
+  git config --global init.defaultBranch main
+  # add config to cstomized git log
 }
 
 install_snapd() {
