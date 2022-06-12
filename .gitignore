@@ -3,4 +3,5 @@
 .vscode/
 
 # Project Files
-.env
+DownloadedInstallationFilesFolder/
+setup.sh

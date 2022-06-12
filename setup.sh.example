@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Only change projectPath if it's really necessary
+declare projectPath="$PWD"
+
+# Select the distro that will be used to build the workstation
+declare -A distros
+
+distros[ubuntu]=true
+distros[popOS]=false
+distros[arch]=false
+distros[nix]=false
+
+# Set information for git configuration
+declare GIT_USER_NAME="$USER"
+declare GIT_USER_EMAIL=
