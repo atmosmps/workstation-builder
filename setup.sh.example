@@ -1,9 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Only change projectPath if it's really necessary
-declare projectPath="$PWD"
+#
+# Set information for git configuration
+#
+declare GIT_USER_NAME="$USER"
+declare GIT_USER_EMAIL=
 
+#
 # Select the distro that will be used to build the workstation
+#
 declare -A distros
 
 distros[ubuntu]=true
@@ -11,6 +16,104 @@ distros[popOS]=false
 distros[arch]=false
 distros[nix]=false
 
-# Set information for git configuration
-declare GIT_USER_NAME="$USER"
-declare GIT_USER_EMAIL=
+#
+# tell what you want installed
+# If you want a block or item not to be installed, enter false.
+#
+
+declare -A packages
+
+#
+# Softwares
+#
+## Ubuntu Only
+packages[snapd]=true # [ ] check if ubuntu was chosen, use snap to perform installations
+
+packages[aws-cli]=false
+packages[curl]=true
+packages[docker]=true
+packages[docker-compose]=true
+packages[docker-desktop]=false
+packages[gcp-cli]=false
+packages[git]=true
+packages[kubectl]=true
+packages[nano]=true
+packages[vim]=true
+packages[set-vim-git]=true
+# packages[synapse]=true # remove from installation setup
+
+## Terminal
+packages[terminator]=true
+packages[tmux]=true
+packages[zsh]=true
+packages[set-default-zsh]=true
+
+#
+# Servers
+#
+packages[apache2]=false
+packages[nginx]=false
+
+#
+# Databases
+#
+packages[mongo]=false
+packages[mysql]=false
+packages[postgresql]=false
+packages[redis]=false
+
+#
+# Programming Languages
+#
+packages[python]=true
+packages[php5.6-fpm]=false
+#packages[php7.2-fpm]=false # remove from installation setup
+#packages[php7.3-fpm]=false # remove from installation setup
+packages[php7.4-fpm]=false
+packages[php8.0-fpm]=true
+packages[composer]=true
+packages[java]=true
+packages[node]=true
+packages[go]=true
+#packages[sass]=false # remove from installation setup
+#packages[less]=false # remove from installation setup
+packages[rust]=true
+packages[lisp]=true
+
+#
+# Tools
+#
+packages[anki]=true
+packages[dbeaver]=true
+packages[mysql-workbench]=false
+# packages[skype]=false
+packages[slack]=true
+packages[vscode]=true
+packages[intellij]=true
+packages[php_storm]=true
+# packages[atom]=false
+# packages[inkscape]=false
+# packages[gimp]=false
+packages[remmina]=true
+# packages[insomnia]=false
+packages[postman]=true
+packages[htop]=true
+packages[insync]=true
+packages[peek]=true
+packages[qbittorrent]=true
+packages[spotify]=true
+packages[stremio]=true
+packages[sublime-text]=true
+packages[telegram-desktop]=true
+packages[vlc]=true
+packages[wps_office]=true
+packages[xmind]=true
+packages[google_chrome]=true
+packages[firefox]=true
+packages[resp_app]=true
+
+#
+# Others
+#
+## Fonts
+packages[source_code_pro]=true

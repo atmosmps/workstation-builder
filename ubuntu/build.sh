@@ -1,63 +1,63 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-source ../setup.sh
+#source ../setup.sh
 
-start() {
-  sudo apt update
-  sudo apt-get install ubuntu-restricted-extras -y
+#start() {
+#  sudo apt update
+#  sudo apt-get install ubuntu-restricted-extras -y
+#
+#  sudo apt-get install -y \
+#      curl \
+#      wget \
+#      gnupg \
+#      unzip \
+#      net-tools \
+#      lsb-release \
+#      build-essential \
+#      ca-certificates \
+#      apt-transport-https \
+#      software-properties-common
+#}
 
-  sudo apt-get install -y \
-      ca-certificates \
-      curl \
-      wget \
-      gnupg \
-      unzip \
-      net-tools \
-      lsb-release \
-      build-essential \
-      apt-transport-https \
-      software-properties-common
-}
+#install_vim() {
+#  sudo apt-get install vim -y
+#}
+#
+#install_nano() {
+#  sudo apt-get install nano -y
+#}
+#
+#install_git() {
+#  sudo apt install git -y
+#  git config --global user.name "${GIT_USER_NAME}"
+#  git config --global user.email "${GIT_USER_EMAIL}"
+#  git config --global init.defaultBranch main
+#}
 
-install_vim() {
-  sudo apt-get install vim -y
-}
+#install_terminal() {
+#  sudo apt install terminator -y
+#  sudo apt install tmux -y
+#  sudo apt install zsh -y
+#  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#  # adicionar step para configurar .zshrc
+#}
 
-install_nano() {
-  sudo apt-get install nano -y
-}
-
-install_git() {
-  sudo apt install git -y
-  git config --global user.name "${GIT_USER_NAME}"
-  git config --global user.email "${GIT_USER_EMAIL}"
-  git config --global init.defaultBranch main
-}
-
-install_terminal() {
-  sudo apt install terminator -y
-  sudo apt install tmux -y
-  sudo apt install zsh -y
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  # adicionar step para configurar .zshrc
-}
-
-install_source_code_pro_font() {
-  fontsDir="${HOME}/.local/share/fonts"
-
-  if [ ! -d "${fontsDir}" ]; then
-    echo "mkdir -p fontsDir"
-    mkdir -p "${fontsDir}"
-  else
-    echo "Found fonts dir ${fontsDir}"
-  fi
-
-  wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installationFilesFolder}
-  unzip ${installationFilesFolder}/Source_Code_Pro.zip -d source_code_pro_fonts
-  # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
-  echo "fc-cache -f -v"
-  fc-cache -f -v
-}
+#install_source_code_pro_font() {
+#  fontsDir="${HOME}/.local/share/fonts"
+#
+#  if [ ! -d "${fontsDir}" ]; then
+#    echo "mkdir -p fontsDir"
+#    mkdir -p "${fontsDir}"
+#  else
+#    echo "Found fonts dir ${fontsDir}"
+#  fi
+#
+#  wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installationFilesFolder}
+#  unzip ${installationFilesFolder}/Source_Code_Pro.zip -d source_code_pro_fonts
+#  # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
+#  echo "fc-cache -f -v"
+#  fc-cache -f -v
+#}
 
 install_pyenv() {
   return 0
@@ -284,7 +284,7 @@ cleaning() {
 
   # Remove older versions of Snap applications
   du -h /var/lib/snapd/snaps
-  sh ./scripts/remove-old-versions-of-snap.sh
+  sh ./remove-old-versions-of-snap.sh
 
   # Clean the thumbnail cache
   du -sh ~/.cache/thumbnails
