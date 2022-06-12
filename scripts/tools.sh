@@ -1,15 +1,15 @@
-#!/bin/bash 
+#!/bin/bash
 
 title_echo "INSTALLING TOOLS"
 
 update_packages
 
-if [ ${packages[mysql-workbench]} = true ]
+if [ "${packages[mysql-workbench]}" = true ]
 then
     process_install_echo "mysql-workbench" "MySQL Workbench"
 fi
 
-if [ ${packages[dbeaver]} = true ]
+if [ "${packages[dbeaver]}" = true ]
 then
     install_echo "Starting installation: DBeaver"
 
@@ -20,18 +20,7 @@ then
     success_install_echo "Finished installation: DBeaver"
 fi
 
-if [ ${packages[skype]} = true ]
-then
-    install_echo "Starting installation: Skype"
-
-    wget -c -P ./temp https://go.skype.com/skypeforlinux-64.deb 1> /dev/null 2> /dev/stdout
-    sudo apt install ./temp/skypeforlinux-64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/skypeforlinux-64.deb 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: Skype"
-fi 
-
-if [ ${packages[slack]} = true ]
+if [ "${packages[slack]}" = true ]
 then
     install_echo "Starting installation: Slack"
 
@@ -42,7 +31,7 @@ then
     success_install_echo "Finished installation: Skype"
 fi
 
-if [ ${packages[sublime-text]} = true ]
+if [ "${packages[sublime-text]}" = true ]
 then
     wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - 1> /dev/null 2> /dev/stdout
     sudo apt install apt-transport-https 1> /dev/null 2> /dev/stdout
@@ -51,7 +40,7 @@ then
     process_install_echo "sublime-text" "Sublime Text 3"
 fi
 
-if [ ${packages[code]} = true ]
+if [ "${packages[code]}" = true ]
 then
     install_echo "Starting installation: VSCode"
 
@@ -65,31 +54,7 @@ then
     success_install_echo "Finished installation: VSCode"
 fi
 
-if [ ${packages[atom]} = true ]
-then
-    update_packages
-    sudo apt install software-properties-common apt-transport-https wget 1> /dev/null 2> /dev/stdout
-    wget -q https://packagecloud.io/AtomEditor/atom/gpgkey -O- | sudo apt-key add - 1> /dev/null 2> /dev/stdout
-    sudo add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" 1> /dev/null 2> /dev/stdout
-    process_install_echo "atom" "Atom"
-fi
-
-if [ ${packages[inkscape]} = true ]
-then
-    sudo add-apt-repository ppa:inkscape.dev/stable-daily 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "inkscape" "Inkscape"
-fi
-
-if [ ${packages[gimp]} = true ]
-then
-    sudo apt autoremove gimp gimp-plugin-registry 1> /dev/null 2> /dev/stdout
-    sudo add-apt-repository ppa:otto-kesselgulasch/gimp 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "gimp" "Gimp"
-fi
-
-if [ ${packages[remmina]} = true ]
+if [ "${packages[remmina]}" = true ]
 then
     sudo apt-add-repository ppa:remmina-ppa-team/remmina-next 1> /dev/null 2> /dev/stdout
     update_packages
@@ -98,39 +63,16 @@ then
     process_install_echo "remmina-plugin-secret" "Remmina Plugin Secret"
 fi
 
-if [ ${packages[insomnia]} = true ]
-then
-    echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
-        | sudo tee -a /etc/apt/sources.list.d/insomnia.list 1> /dev/null 2> /dev/stdout
-
-    wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \
-        | sudo apt-key add - 1> /dev/null 2> /dev/stdout
-
-    update_packages
-    process_install_echo "insomnia" "Insomnia"
-fi
-
-if [ ${packages[htop]} = true ]
+if [ "${packages[htop]}" = true ]
 then
     process_install_echo "htop" "HTOP"
 fi
 
-if [ ${packages[telegram-desktop]} = true ]
+if [ "${packages[telegram-desktop]}" = true ]
 then
     sudo add-apt-repository ppa:atareao/telegram 1> /dev/null 2> /dev/stdout
     update_packages
     process_install_echo "telegram" "Telegram Desktop"
-fi
-
-if [ ${packages[gitkraken]} = true ]
-then
-    install_echo "Starting installation: Git Kraken"
-
-    wget -c -P ./temp https://release.gitkraken.com/linux/gitkraken-amd64.deb 1> /dev/null 2> /dev/stdout
-    sudo dpkg -i gitkraken-amd64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/gitkraken-amd64.deb 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: Git Kraken"
 fi
 
 echo ""

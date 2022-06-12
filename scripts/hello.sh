@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 header_project_echo
 
@@ -14,7 +14,7 @@ total_items_to_be_installed=0
 # Responsible to list the installed programs
 for package in "${!packages[@]}"
 do
-    if [ ${packages[$package]} = true ] 
+    if [ "${packages[$package]}" = true ]
     then
         total_items_to_be_installed=1
         line_echo "$package"
@@ -31,9 +31,9 @@ fi
 echo ""
 
 question_echo "Do you want continue? (1) Yes (0) No"
-read continue
+read -r continue
 
-if [ $continue = 0 ]
+if [ "$continue" = 0 ]
 then
     exclamation_echo "OK...process interrupted."
     exit

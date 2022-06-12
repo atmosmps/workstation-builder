@@ -23,5 +23,5 @@ function footer_log() {
 
 
 function register_log() {
-    echo $1 >> './log/installation_log.txt'
+    echo "$1" >> './log/installation_log.txt'
 }

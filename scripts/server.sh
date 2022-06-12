@@ -1,10 +1,10 @@
-#!/bin/bash 
+#!/bin/bash
 
 title_echo "INSTALLING SERVER"
 
 update_packages
 
-if [ ${packages[nginx]} = true ]
+if [ "${packages[nginx]}" = true ]
 then
     process_install_echo "nginx" "Nginx"
     process_install_echo "fcgiwrap" "Fcgiwrap"
@@ -28,7 +28,7 @@ then
     success_install_echo "Finalized copy of PHP8.0 example VHost file"
 fi
 
-if [ ${packages[apache2]} = true ]
+if [ "${packages[apache2]}" = true ]
 then
     process_install_echo "apache2" "Apache2"
 fi

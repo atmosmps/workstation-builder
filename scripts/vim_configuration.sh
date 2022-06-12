@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #############################################################
 ###
@@ -29,7 +29,7 @@ install_echo "Copying .vimrc file to the ~ / directory"
 cp .vimrc ~/  1> /dev/null 2> /dev/stdout
 success_install_echo "Finished copying .vimrc file to the ~ / directory"
 
-if [ ${packages[set-vim-git]} = true ]
+if [ "${packages[set-vim-git]}" = true ]
 then
     install_echo "Setting vim as the default editor in Git"
     git config --global core.editor vim

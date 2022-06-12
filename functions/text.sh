@@ -38,12 +38,12 @@ function success_install_echo() {
 
 function install_echo() {
     echo -e " \u231B \033[01;34m $1"
-} 
+}
 
 function process_install_echo() {
     install_echo "Starting installation: $2"
     sleep 2
-    if sudo apt install -y $1 1> /dev/null 2> /dev/stdout
+    if sudo apt install -y "$1" 1> /dev/null 2> /dev/stdout
     then
         success_install_echo "Finished installation: $2"
     else
@@ -58,8 +58,9 @@ function header_project_echo()
     header_echo "### Welcome to                                                             #"
     header_echo "### Configuration assistant                                                #"
     header_echo "###                                                                        #"
-    header_echo "### Project: https://github.com/Diego-Brocanelli/workstation_configuration #"
-    header_echo "### Author: Diego Brocanelli                                               #"
+    header_echo "### Based on the following project                                         #"
+    header_echo "### https://github.com/Diego-Brocanelli/workstation_configuration          #"
+    header_echo "### Adaptations: Atmos Maciel                                              #"
     header_echo "###                                                                        #"
     header_echo "############################################################################"
 }

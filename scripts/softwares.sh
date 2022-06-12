@@ -1,20 +1,20 @@
-#!/bin/bash 
+#!/bin/bash
 
 title_echo "INSTALLING SOFTWARE"
 
 update_packages
 
-if [ ${packages[curl]} = true ]
+if [ "${packages[curl]}" = true ]
 then
     process_install_echo "curl" "Curl"
 fi
 
-if [ ${packages[vim]} = true ]
+if [ "${packages[vim]}" = true ]
 then
     process_install_echo "vim" "Vim"
 fi
 
-if [ ${packages[git]} = true ]
+if [ "${packages[git]}" = true ]
 then
     process_install_echo "git" "Git"
 
@@ -23,14 +23,7 @@ then
     success_install_echo "Finalized definition of vim as default editor in Git"
 fi
 
-if [ ${packages[synapse]} = true ]
-then
-    sudo add-apt-repository ppa:synapse-core/ppa -y 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "synapse" "Synapse"
-fi
-
-if [ ${packages[aws-cli]} = true ]
+if [ "${packages[aws-cli]}" = true ]
 then
     install_echo "Starting installation: AWS Cli V.2"
     
@@ -42,7 +35,7 @@ then
     success_install_echo "Finished installation: AWS Cli V.2"
 fi
 
-if [ ${packages[docker]} = true ]
+if [ "${packages[docker]}" = true ]
 then
     install_echo "Starting installation: Docker"
 
@@ -63,7 +56,7 @@ then
     success_install_echo "Finished installation: Docker"
 fi
 
-if [ ${packages[docker]} = true ]
+if [ "${packages[docker]}" = true ]
 then
     install_echo "Starting installation: Docker Compose"
 
@@ -74,12 +67,12 @@ then
     success_install_echo "Finished installation: Docker Compose"
 fi
 
-if [ ${packages[zsh]} = true ]
+if [ "${packages[zsh]}" = true ]
 then
     process_install_echo "zsh" "Zsh"
 fi
 
-if [ ${packages[set-default-zsh]} = true ]
+if [ "${packages[set-default-zsh]}" = true ]
 then
     sudo usermod -s /usr/bin/zsh $(whoami) 1> /dev/null 2> /dev/stdout
 fi
