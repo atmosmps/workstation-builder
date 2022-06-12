@@ -1,27 +1,25 @@
 #!/usr/bin/env bash
 
-installationFilesFolder="DownloadedInstallationFilesFolder"
+installationFilesFolder="../DownloadedInstallationFilesFolder"
 
 start() {
   mkdir ${installationFilesFolder}
   echo -e "# Installation Files Folder\n.${installationFilesFolder}/" >> .gitignore
 
   sudo apt update
-
-  # Install Ubuntu Restricted Extras
   sudo apt-get install ubuntu-restricted-extras -y
 
-  # Install
   sudo apt-get install -y \
       ca-certificates \
       curl \
       wget \
       gnupg \
+      unzip \
+      net-tools \
       lsb-release \
-      apt-transport-https \
       build-essential \
-      make \
-      unzip
+      apt-transport-https \
+      software-properties-common
 }
 
 install_vim() {
@@ -37,7 +35,6 @@ install_git() {
   git config --global user.name "atmosmps"
   git config --global user.email "atmos.mps@gmail.com"
   git config --global init.defaultBranch main
-  # add config to cstomized git log
 }
 
 install_terminal() {
@@ -63,6 +60,10 @@ install_source_code_pro_font() {
   # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
   echo "fc-cache -f -v"
   fc-cache -f -v
+}
+
+install_pyenv() {
+  return 0
 }
 
 install_php() {
@@ -266,6 +267,10 @@ install_postman() {
   sudo snap install postman
 }
 
+install_resp_app() {
+  sudo snap install redis-desktop-manager
+}
+
 cleaning() {
   sudo apt-get autoremove -y
 
@@ -282,7 +287,7 @@ cleaning() {
 
   # Remove older versions of Snap applications
   du -h /var/lib/snapd/snaps
-  sh ./remove-old-versions-of-snap.sh
+  sh ./scripts/remove-old-versions-of-snap.sh
 
   # Clean the thumbnail cache
   du -sh ~/.cache/thumbnails
