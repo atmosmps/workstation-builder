@@ -4,7 +4,7 @@ header_project_echo
 
 echo ""
 danger_echo "***********************ALERT******************************"
-danger_echo "THIS SCRIPT WILL UPDATE THE APT PACKAGES ON YOUR COMPUTER!"
+danger_echo "THIS SCRIPT WILL UPDATE THE PACKAGES ON YOUR COMPUTER!    "
 danger_echo "**********************************************************"
 echo ""
 

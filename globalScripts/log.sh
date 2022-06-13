@@ -15,12 +15,7 @@ function footer_log() {
     register_log ""
     register_log "Thank you for using our tool."
     register_log ""
-    register_log "Project: https://github.com/Diego-Brocanelli/workstation_configuration"
-    register_log ""
-    register_log "Author: Diego Brocanelli"
-    register_log ""
 }
-
 
 function register_log() {
     echo "$1" >> './log/installation_log.txt'
