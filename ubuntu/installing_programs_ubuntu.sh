@@ -1,63 +1,34 @@
 #!/bin/bash
 
-#source ../setup.sh
 
-#start() {
-#  sudo apt update
-#  sudo apt-get install ubuntu-restricted-extras -y
-#
-#  sudo apt-get install -y \
-#      curl \
-#      wget \
-#      gnupg \
-#      unzip \
-#      net-tools \
-#      lsb-release \
-#      build-essential \
-#      ca-certificates \
-#      apt-transport-https \
-#      software-properties-common
-#}
+install_nano() {
+  sudo apt-get install nano -y
+}
 
-#install_vim() {
-#  sudo apt-get install vim -y
-#}
-#
-#install_nano() {
-#  sudo apt-get install nano -y
-#}
-#
-#install_git() {
-#  sudo apt install git -y
-#  git config --global user.name "${GIT_USER_NAME}"
-#  git config --global user.email "${GIT_USER_EMAIL}"
-#  git config --global init.defaultBranch main
-#}
+install_terminal() {
+  sudo apt install terminator -y
+  sudo apt install tmux -y
+  sudo apt install zsh -y
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  # adicionar step para configurar .zshrc
+}
 
-#install_terminal() {
-#  sudo apt install terminator -y
-#  sudo apt install tmux -y
-#  sudo apt install zsh -y
-#  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#  # adicionar step para configurar .zshrc
-#}
+install_source_code_pro_font() {
+  fontsDir="${HOME}/.local/share/fonts"
 
-#install_source_code_pro_font() {
-#  fontsDir="${HOME}/.local/share/fonts"
-#
-#  if [ ! -d "${fontsDir}" ]; then
-#    echo "mkdir -p fontsDir"
-#    mkdir -p "${fontsDir}"
-#  else
-#    echo "Found fonts dir ${fontsDir}"
-#  fi
-#
-#  wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installationFilesFolder}
-#  unzip ${installationFilesFolder}/Source_Code_Pro.zip -d source_code_pro_fonts
-#  # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
-#  echo "fc-cache -f -v"
-#  fc-cache -f -v
-#}
+  if [ ! -d "${fontsDir}" ]; then
+    echo "mkdir -p fontsDir"
+    mkdir -p "${fontsDir}"
+  else
+    echo "Found fonts dir ${fontsDir}"
+  fi
+
+  wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installationFilesFolder}
+  unzip ${installationFilesFolder}/Source_Code_Pro.zip -d source_code_pro_fonts
+  # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
+  echo "fc-cache -f -v"
+  fc-cache -f -v
+}
 
 install_pyenv() {
   return 0
@@ -110,48 +81,6 @@ install_lisp_lang() {
        --eval '(ql:add-to-init-file)' \
        --quit
 
-}
-
-install_docker_and_docker_compose() {
-  keyringsDir="/etc/apt/keyrings"
-
-  if [ ! -d "${keyringsDir}" ]; then
-    echo "sudo mkdir -p keyringsDir"
-    sudo mkdir -p "${keyringsDir}"
-  else
-    echo "Found keyringsDir dir ${keyringsDir}"
-  fi
-
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-  sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-  sudo apt-get update
-  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-  sudo groupadd docker
-  sudo usermod -aG docker "$USER"
-
-  sudo systemctl enable docker.service
-  sudo systemctl enable containerd.service
-
-  sudo apt-get install docker-compose-plugin
-}
-
-install_kubectl() {
-  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
-  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-  kubectl version --client
-}
-
-install_snapd() {
-  sudo apt update
-  sudo apt install snapd -y
 }
 
 install_anki() {
