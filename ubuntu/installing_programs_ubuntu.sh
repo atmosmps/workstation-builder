@@ -1,35 +1,5 @@
 #!/bin/bash
 
-
-install_nano() {
-  sudo apt-get install nano -y
-}
-
-install_terminal() {
-  sudo apt install terminator -y
-  sudo apt install tmux -y
-  sudo apt install zsh -y
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  # adicionar step para configurar .zshrc
-}
-
-install_source_code_pro_font() {
-  fontsDir="${HOME}/.local/share/fonts"
-
-  if [ ! -d "${fontsDir}" ]; then
-    echo "mkdir -p fontsDir"
-    mkdir -p "${fontsDir}"
-  else
-    echo "Found fonts dir ${fontsDir}"
-  fi
-
-  wget -qO https://fonts.google.com/download?family=Source%20Code%20Pro ${installationFilesFolder}
-  unzip ${installationFilesFolder}/Source_Code_Pro.zip -d source_code_pro_fonts
-  # mv ${installationFilesFolder/source_code_pro_fonts/static/*.ttf fontsDir # esta linha é necessaria, entender porque não está funcionando
-  echo "fc-cache -f -v"
-  fc-cache -f -v
-}
-
 install_pyenv() {
   return 0
 }
@@ -91,10 +61,6 @@ install_dbeaver() {
   sudo add-apt-repository ppa:serge-rider/dbeaver-ce
   sudo apt-get update
   sudo apt-get install dbeaver-ce -y
-}
-
-install_htop() {
-  sudo apt-get install htop -y
 }
 
 install_insync() {
@@ -196,33 +162,3 @@ install_postman() {
 install_resp_app() {
   sudo snap install redis-desktop-manager
 }
-
-cleaning() {
-  sudo apt-get autoremove -y
-
-  # Remove installationFilesFolder
-  rm -rf ${installationFilesFolder}
-
-  # Clean up APT cache in Ubuntu
-  sudo du -sh /var/cache/apt
-  sudo apt-get clean -y
-
-  # Clear systemd journal logs [Intermediate knowledge]
-  journalctl --disk-usage
-  sudo journalctl --vacuum-time=3d
-
-  # Remove older versions of Snap applications
-  du -h /var/lib/snapd/snaps
-  sh ./remove-old-versions-of-snap.sh
-
-  # Clean the thumbnail cache
-  du -sh ~/.cache/thumbnails
-  rm -rf ~/.cache/thumbnails/*
-}
-
-setup() {
-  start
-  cleaning
-}
-
-setup

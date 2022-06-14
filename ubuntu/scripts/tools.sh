@@ -144,4 +144,29 @@ then
     sudo usermod -s /usr/bin/zsh $(whoami) 1> /dev/null 2> /dev/stdout
 fi
 
+if [ "${packages[source-code-pro]}" = true ]
+then
+    install_echo "Starting installation: Font Source Code Pro"
+
+    fontsDir="${HOME}/.local/share/fonts"
+
+    if [ ! -d "${fontsDir}" ]; then
+      line_echo "mkdir -p fontsDir"
+      mkdir -p "${fontsDir}"
+    else
+      line_echo "Found fonts dir ${fontsDir}"
+    fi
+
+    curl "https://fonts.google.com/download?family=Source%20Code%20Pro" -o "./temp/SourceCodePro.zip" 1> /dev/null 2> /dev/stdout
+    unzip ./temp/SourceCodePro.zip -d source_code_pro_fonts 1> /dev/null 2> /dev/stdout
+    mv ./temp/source_code_pro_fonts/static/*.ttf fontsDir 1> /dev/null 2> /dev/stdout
+    line_echo "fc-cache -f -v" 1> /dev/null 2> /dev/stdout
+    fc-cache -f -v 1> /dev/null 2> /dev/stdout
+
+    rm ./temp/SourceCodePro.zip 1> /dev/null 2> /dev/stdout
+    rm -rf ./temp/source_code_pro_fonts 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Font Source Code Pro"
+fi
+
 echo ""
