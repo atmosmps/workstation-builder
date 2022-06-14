@@ -11,7 +11,8 @@ setup_exists
 source setup.sh
 
 # Create the directory where the installation files will be added
-mkdir "${PWD}/DownloadedInstallationFilesFolder"
+parentDir="$(dirname "${PWD}")"
+mkdir "${parentDir}/DownloadedInstallationFilesFolder"
 
 date_start=$(date +'%Y-%m-%d %T')
 
@@ -46,10 +47,11 @@ then
     source scripts/vim_configuration.sh
 fi
 
+# Post installation cleaning
+source scripts/cleaning.sh
+
 # Installing checking installed packages
 source ../globalScripts/checking_installed_packages.sh
-
-# Add cleaning installation here
 
 # process completion
 source ../globalScripts/finalization.sh
