@@ -4,10 +4,6 @@ title_echo "Post installation cleaning"
 
 sudo apt-get autoremove -y
 
-# Remove DownloadedInstallationFilesFolder
-parentDir="$(dirname "${PWD}")"
-rm -rf "${parentDir}/../DownloadedInstallationFilesFolder"
-
 # Clean up APT cache in Ubuntu
 sudo du -sh /var/cache/apt
 sudo apt-get clean -y

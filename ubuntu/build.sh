@@ -10,10 +10,6 @@ setup_exists
 
 source setup.sh
 
-# Create the directory where the installation files will be added
-parentDir="$(dirname "${PWD}")"
-mkdir "${parentDir}/DownloadedInstallationFilesFolder"
-
 date_start=$(date +'%Y-%m-%d %T')
 
 # Installing
