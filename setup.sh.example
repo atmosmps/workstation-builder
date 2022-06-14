@@ -2,6 +2,7 @@
 
 #
 # Set information for git configuration
+# Modify the information if necessary
 #
 declare GIT_USER_NAME="$USER"
 declare GIT_USER_EMAIL=
@@ -31,9 +32,7 @@ packages[snapd]=true # [ ] check if ubuntu was chosen, use snap to perform insta
 
 packages[aws-cli]=false
 packages[curl]=true
-packages[docker]=true
-packages[docker-compose]=true
-packages[docker-desktop]=false
+packages[docker-docker-compose]=true
 packages[gcp-cli]=false
 packages[git]=true
 packages[kubectl]=true
