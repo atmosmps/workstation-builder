@@ -50,7 +50,7 @@ packages[zsh]=true
 packages[set-default-zsh]=true
 #
 ## Fonts
-packages[source_code_pro]=true
+packages[source-code-pro]=true
 
 #
 # Web Servers
@@ -89,7 +89,7 @@ packages[mysql-workbench]=false
 packages[slack]=true
 packages[vscode]=true
 packages[intellij]=true
-packages[php_storm]=true
+packages[php-storm]=true
 packages[remmina]=true
 packages[postman]=true
 packages[insync]=true
@@ -104,4 +104,4 @@ packages[wps_office]=true
 packages[xmind]=true
 packages[google_chrome]=true
 packages[firefox]=true
-packages[resp_app]=true
+packages[resp-app]=true
