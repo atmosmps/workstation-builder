@@ -1,66 +1,54 @@
 #!/bin/bash
 
-title_echo "INSTALLING TOOLS"
+title_echo "INSTALLING SOFTWARE"
 
 update_packages
 
-if [ "${packages[mysql-workbench]}" = true ]
+if [ "${packages[aws-cli]}" = true ]
 then
-    process_install_echo "mysql-workbench" "MySQL Workbench"
+    install_echo "Starting installation: AWS Cli V.2"
+
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "./temp/awscliv2.zip" 1> /dev/null 2> /dev/stdout
+    unzip ./temp/awscliv2.zip 1> /dev/null 2> /dev/stdout
+    rm ./temp/awscliv2.zip 1> /dev/null 2> /dev/stdout
+    rm ./aws 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: AWS Cli V.2"
 fi
 
-if [ "${packages[dbeaver]}" = true ]
+if [ "${packages[snapd]}" = true ]
 then
-    install_echo "Starting installation: DBeaver"
-
-    wget -c -P ./temp https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-    sudo dpkg -i ./temp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: DBeaver"
+    process_install_echo "snapd" "Snapd"
 fi
 
-if [ "${packages[slack]}" = true ]
+if [ "${packages[curl]}" = true ]
 then
-    install_echo "Starting installation: Slack"
-
-    wget -c -P ./temp https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
-    sudo apt install ./temp https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/slack-desktop-4.12.0-amd64.deb 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: Skype"
+    process_install_echo "curl" "Curl"
 fi
 
-if [ "${packages[sublime-text]}" = true ]
+if [ "${packages[nano]}" = true ]
 then
-    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - 1> /dev/null 2> /dev/stdout
-    sudo apt install apt-transport-https 1> /dev/null 2> /dev/stdout
-    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "sublime-text" "Sublime Text 3"
+    process_install_echo "nano" "Nano"
 fi
 
-if [ "${packages[code]}" = true ]
+if [ "${packages[vim]}" = true ]
 then
-    install_echo "Starting installation: VSCode"
-
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg 1> /dev/null 2> /dev/stdout
-    sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ 1> /dev/null 2> /dev/stdout
-    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' 1> /dev/null 2> /dev/stdout
-    sudo apt install apt-transport-https 1> /dev/null 2> /dev/stdout
-    sudo apt update 1> /dev/null 2> /dev/stdout
-    sudo apt install code 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: VSCode"
+    process_install_echo "vim" "Vim"
 fi
 
-if [ "${packages[remmina]}" = true ]
+if [ "${packages[git]}" = true ]
 then
-    sudo apt-add-repository ppa:remmina-ppa-team/remmina-next 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "remmina" "Remmina"
-    process_install_echo "remmina-plugin-rdp" "Remmina Plugin RDP"
-    process_install_echo "remmina-plugin-secret" "Remmina Plugin Secret"
+    process_install_echo "git" "Git"
+
+    install_echo "Configuration to vim editor on Git"
+    git config --global core.editor vim
+    success_install_echo "Finalized definition of vim as default editor in Git"
+
+    install_echo "Set global settings"
+    git config --global user.name "${GIT_USER_NAME}"
+    git config --global user.email "${GIT_USER_EMAIL}"
+    git config --global init.defaultBranch main
+    success_install_echo "Finalizing global configuration settings"
 fi
 
 if [ "${packages[htop]}" = true ]
@@ -68,11 +56,92 @@ then
     process_install_echo "htop" "HTOP"
 fi
 
-if [ "${packages[telegram-desktop]}" = true ]
+if [ "${packages[gcp-cli]}" = true ]
 then
-    sudo add-apt-repository ppa:atareao/telegram 1> /dev/null 2> /dev/stdout
-    update_packages
-    process_install_echo "telegram" "Telegram Desktop"
+    install_echo "Starting installation: GCP CLI"
+
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list 1> /dev/null 2> /dev/stdout
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.gpg 1> /dev/null 2> /dev/stdout
+
+    sudo apt-get update && sudo apt-get install google-cloud-cli 1> /dev/null 2> /dev/stdout
+
+    gcloud init 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: GCP CLI"
+fi
+
+if [ "${packages[docker]}" = true ]
+then
+    install_echo "Starting installation: Docker"
+
+    sudo apt update -y 1> /dev/null 2> /dev/stdout
+    sudo apt -y install apt-transport-https ca-certificates curl software-properties-common 1> /dev/null 2> /dev/stdout
+
+    keyringsDir="/etc/apt/keyrings"
+
+    if [ ! -d "${keyringsDir}" ]; then
+      line_echo "sudo mkdir -p keyringsDir"
+      sudo mkdir -p "${keyringsDir}"
+    else
+      line_echo "Found keyringsDir dir ${keyringsDir}"
+    fi
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg 1> /dev/null 2> /dev/stdout
+
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list 1> /dev/null 2> /dev/stdout
+
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg 1> /dev/null 2> /dev/stdout
+
+    sudo apt update -y 1> /dev/null 2> /dev/stdout
+
+    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin 1> /dev/null 2> /dev/stdout
+
+    sudo groupadd docker
+    sudo usermod -aG docker "$USER" 1> /dev/null 2> /dev/stdout
+
+    sudo systemctl enable docker.service 1> /dev/null 2> /dev/stdout
+    sudo systemctl enable containerd.service 1> /dev/null 2> /dev/stdout
+
+    sudo apt-get install docker-compose-plugin 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Docker"
+fi
+
+if [ "${packages[kubectl]}" = true ]
+then
+    install_echo "Starting installation: Kubectl"
+
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" 1> /dev/null 2> /dev/stdout
+    curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256" 1> /dev/null 2> /dev/stdout
+
+    echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check 1> /dev/null 2> /dev/stdout
+
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl 1> /dev/null 2> /dev/stdout
+
+    kubectl version --client
+
+    success_install_echo "Finished installation: Kubectl"
+fi
+
+if [ "${packages[terminator]}" = true ]
+then
+    process_install_echo "terminator" "Terminator"
+fi
+
+if [ "${packages[tmux]}" = true ]
+then
+    process_install_echo "tmux" "Tmux"
+fi
+
+if [ "${packages[zsh]}" = true ]
+then
+    process_install_echo "zsh" "Zsh"
+fi
+
+if [ "${packages[set-default-zsh]}" = true ]
+then
+    sudo usermod -s /usr/bin/zsh $(whoami) 1> /dev/null 2> /dev/stdout
 fi
 
 echo ""

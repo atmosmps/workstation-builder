@@ -22,20 +22,20 @@ source ../globalScripts/hello.sh
 # Essentials packages
 source scripts/essentials_packages.sh
 
-# Installing softwares
-source scripts/softwares.sh
+# Installing software tools
+source scripts/tools.sh
 
-# Installing server
-source scripts/server.sh
+# Installing web servers
+source scripts/web_servers.sh
 
-# Installing database
-source scripts/database.sh
+# Installing databases servers
+source scripts/databases_servers.sh
 
 # Installing programming languages
 source scripts/programming_languages.sh
 
-# Installing tools
-source scripts/tools.sh
+# Installing desktop tools
+source scripts/desktop_tools.sh
 
 # Installing server configuration
 # The server settings is based on the settings made in the server step.

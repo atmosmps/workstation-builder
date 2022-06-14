@@ -25,37 +25,42 @@ distros[nix]=false
 declare -A packages
 
 #
-# Softwares
+# Tools
 #
-## Ubuntu Only
-packages[snapd]=true # [ ] check if ubuntu was chosen, use snap to perform installations
-
+## Start Ubuntu Only Tools
+# If true, snap will be used as the default for installing apps on Ubuntu
+packages[snapd]=false
+## End Ubuntu Only Tools
+#
 packages[aws-cli]=false
 packages[curl]=true
 packages[docker-docker-compose]=true
 packages[gcp-cli]=false
 packages[git]=true
+packages[htop]=true
 packages[kubectl]=true
 packages[nano]=true
 packages[vim]=true
 packages[set-vim-git]=true
-
+#
 ## Terminal
 packages[terminator]=true
 packages[tmux]=true
 packages[zsh]=true
 packages[set-default-zsh]=true
+#
+## Fonts
+packages[source_code_pro]=true
 
 #
-# Servers
+# Web Servers
 #
 packages[apache2]=false
 packages[nginx]=false
 
 #
-# Databases
+# Databases Servers
 #
-packages[mongo]=false
 packages[mysql]=false
 packages[postgresql]=false
 packages[redis]=false
@@ -76,7 +81,7 @@ packages[rust]=true
 packages[lisp]=true
 
 #
-# Tools
+# Desktop Tools
 #
 packages[anki]=true
 packages[dbeaver]=true
@@ -87,7 +92,6 @@ packages[intellij]=true
 packages[php_storm]=true
 packages[remmina]=true
 packages[postman]=true
-packages[htop]=true
 packages[insync]=true
 packages[peek]=true
 packages[qbittorrent]=true
@@ -101,9 +105,3 @@ packages[xmind]=true
 packages[google_chrome]=true
 packages[firefox]=true
 packages[resp_app]=true
-
-#
-# Others
-#
-## Fonts
-packages[source_code_pro]=true
