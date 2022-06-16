@@ -130,12 +130,13 @@ if [ "${packages[nvm-node]}" = true ]
 then
     install_echo "Starting installation: NVM and Node"
 
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh 1> /dev/null 2> /dev/stdout
+    curl -o "/temp/install.sh" "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" | zsh 1> /dev/null 2> /dev/stdout
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 1> /dev/null 2> /dev/stdout # This loads nvm
     source "$HOME"/.zshrc 1> /dev/null 2> /dev/stdout
     nvm install 11 1> /dev/null 2> /dev/stdout
     nvm use 11 1> /dev/null 2> /dev/stdout
+    rm /temp/install.sh 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: NVM and Node"
 fi
@@ -144,7 +145,7 @@ if [ "${packages[go]}" = true ]
 then
     install_echo "Starting installation: Go Lang"
 
-    curl "https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz" -o "/temp/go1.18.3.linux-amd64.tar.gz" 1> /dev/null 2> /dev/stdout
+    curl -o "/temp/go1.18.3.linux-amd64.tar.gz" "https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz" 1> /dev/null 2> /dev/stdout
     sudo tar -C /usr/local/ -xzf go1.18.3.linux-amd64.tar.gz 1> /dev/null 2> /dev/stdout
     export PATH=$PATH:/usr/local/go/bin >> ~/.zshrc
     export GOPATH=$HOME/$WORKSPACE_NAME >> ~/.zshrc
@@ -188,7 +189,17 @@ if [ "${packages[clojure]}" = true ]
 then
     install_echo "Starting installation: Clojure Lang"
 
-    "Doing..."
+    if [ "${packages[java]}" != true ]
+    then
+        line_echo "Clojure requires JAVA as a dependency..."
+        line_echo "Check link for more infos: https://clojure.org/guides/install_clojure"
+        line_echo "Fix the issues and try again..."
+    fi
+
+    curl -O "/temp/linux-install-1.11.1.1129.sh" "https://download.clojure.org/install/linux-install-1.11.1.1129.sh" 1> /dev/null 2> /dev/stdout
+    chmod +x /temp/linux-install-1.11.1.1129.sh 1> /dev/null 2> /dev/stdout
+    sudo /temp/linux-install-1.11.1.1129.sh 1> /dev/null 2> /dev/stdout
+    rm /temp/linux-install-1.11.1.1129.sh 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: Clojure Lang"
 fi
@@ -197,7 +208,14 @@ if [ "${packages[elixir]}" = true ]
 then
     install_echo "Starting installation: Elixir Lang"
 
-    "Doing..."
+    wget -O "/temp/erlang-solutions_2.0_all.deb" "https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb" 1> /dev/null 2> /dev/stdout
+    sudo dpkg -i /temp/erlang-solutions_2.0_all.deb 1> /dev/null 2> /dev/stdout
+
+    update_packages
+
+    sudo apt-get install esl-erlang 1> /dev/null 2> /dev/stdout
+    sudo apt-get install elixir 1> /dev/null 2> /dev/stdout
+    rm /temp/erlang-solutions_2.0_all.deb
 
     success_install_echo "Finished installation: Elixir Lang"
 fi

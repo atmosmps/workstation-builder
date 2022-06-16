@@ -4,11 +4,6 @@ install_pyenv() {
   return 0
 }
 
-install_php() {
-  sudo apt install php -y
-  # add step to install composer
-}
-
 install_anki() {
   sudo snap install anki-ppd
 }
@@ -103,7 +98,7 @@ install_intellij() {
   sudo snap install intellij-idea-community --classic
 }
 
-install_intellij() {
+install_clion() {
   sudo snap install clion --classic
 }
 
