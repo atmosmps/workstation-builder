@@ -4,6 +4,15 @@ title_echo "INSTALLING PROGRAMMING LANGUAGES"
 
 update_packages
 
+if [ "${packages[python]}" = true ]
+then
+    install_echo "Starting installation: Python"
+
+    echo "To Do..."
+
+    success_install_echo "Finished installation: Python"
+fi
+
 if [ "${packages[node]}" = true ]
 then
     process_install_echo "nodejs" "NodeJS"

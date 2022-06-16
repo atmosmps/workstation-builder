@@ -31,6 +31,15 @@ then
     process_install_echo "nano" "Nano"
 fi
 
+if [ "${packages[pyenv]}" = true ]
+then
+    install_echo "Starting installation: Pyenv"
+
+    echo "To Do..."
+
+    success_install_echo "Finished installation: Pyenv"
+fi
+
 if [ "${packages[vim]}" = true ]
 then
     process_install_echo "vim" "Vim"
