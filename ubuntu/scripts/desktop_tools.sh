@@ -14,8 +14,8 @@ then
     install_echo "Starting installation: DBeaver"
 
     wget -c -P ./temp https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-    sudo dpkg -i ./temp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo dpkg -i /tmp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
+    rm /tmp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: DBeaver"
 fi
@@ -26,7 +26,7 @@ then
 
     wget -c -P ./temp https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
     sudo apt install ./temp https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb 1> /dev/null 2> /dev/stdout
-    rm ./temp/slack-desktop-4.12.0-amd64.deb 1> /dev/null 2> /dev/stdout
+    rm /tmp/slack-desktop-4.12.0-amd64.deb 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: Skype"
 fi

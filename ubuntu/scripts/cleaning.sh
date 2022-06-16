@@ -20,4 +20,7 @@ sh ./remove_old_versions_of_snap.sh
 du -sh ~/.cache/thumbnails
 rm -rf ~/.cache/thumbnails/*
 
+# Clean the "/tmp" directory
+rm -rf /tmp/*
+
 echo ""
