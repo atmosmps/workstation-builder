@@ -28,9 +28,9 @@ do
 
             echo -e " \u2705 ${package}"
 
-            register_log "    ${package} ....INSTALLED"
+            register_log "    ${package} .... INSTALLED"
 
-        elif which ${package} > /dev/null ;
+        elif which "${package}" > /dev/null ;
         then
             echo -e " \u2705 ${package}"
             register_log "    ${package} .... INSTALLED"

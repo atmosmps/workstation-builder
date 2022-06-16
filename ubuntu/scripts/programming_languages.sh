@@ -15,7 +15,7 @@ then
 
     wget -c -P ./temp wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz 1> /dev/null 2> /dev/stdout
     rm ./temp/go1.15.6.linux-amd64.tar.gz
-    mkdir $HOME/go 1> /dev/null 2> /dev/stdout
+    mkdir "$HOME"/go 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: Go"
 fi
@@ -116,12 +116,99 @@ then
     install_echo "Starting installation: Composer"
     php -r "readfile('https://getcomposer.org/installer');" | php 1> /dev/null 2> /dev/stdout
     sudo mv composer.phar /usr/bin/composer 1> /dev/null 2> /dev/stdout
+    line_echo "Composer Version"
+    composer --version 1> /dev/null 2> /dev/stdout
     success_install_echo "Finished installation: Composer"
+fi
+
+if [ "${packages[java]}" = true ]
+then
+    process_install_echo "openjdk-11-jdk" "Open JDK 11"
+fi
+
+if [ "${packages[nvm-node]}" = true ]
+then
+    install_echo "Starting installation: NVM and Node"
+
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh 1> /dev/null 2> /dev/stdout
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 1> /dev/null 2> /dev/stdout # This loads nvm
+    source "$HOME"/.zshrc 1> /dev/null 2> /dev/stdout
+    nvm install 11 1> /dev/null 2> /dev/stdout
+    nvm use 11 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: NVM and Node"
+fi
+
+if [ "${packages[go]}" = true ]
+then
+    install_echo "Starting installation: Go Lang"
+
+    curl "https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz" -o "/temp/go1.18.3.linux-amd64.tar.gz" 1> /dev/null 2> /dev/stdout
+    sudo tar -C /usr/local/ -xzf go1.18.3.linux-amd64.tar.gz 1> /dev/null 2> /dev/stdout
+    export PATH=$PATH:/usr/local/go/bin >> ~/.zshrc
+    export GOPATH=$HOME/$WORKSPACE_NAME >> ~/.zshrc
+    source "$HOME"/.zshrc 1> /dev/null 2> /dev/stdout
+    go version 1> /dev/null 2> /dev/stdout
+    rm /temp/go1.18.3.linux-amd64.tar.gz 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Go Lang"
 fi
 
 if [ "${packages[rust]}" = true ]
 then
-    process_install_echo "rustc" "Rust"
+    install_echo "Starting installation: Rust Lang"
+
+    # https://github.com/rust-lang/rustup/issues/297
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y 1> /dev/null 2> /dev/stdout
+    rustc --version 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Rust Lang"
+fi
+
+if [ "${packages[lisp]}" = true ]
+then
+    install_echo "Starting installation: Lisp Lang"
+
+    process_install_echo "sbcl" "Sbcl"
+
+    line_echo "Install Quicklisp package manager"
+    curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp 1> /dev/null 2> /dev/stdout
+    sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
+         --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
+         --eval '(ql:add-to-init-file)' \
+         --quit 1> /dev/null 2> /dev/stdout
+
+    rm /tmp/ql.lisp 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Lisp Lang"
+fi
+
+if [ "${packages[clojure]}" = true ]
+then
+    install_echo "Starting installation: Clojure Lang"
+
+    "Doing..."
+
+    success_install_echo "Finished installation: Clojure Lang"
+fi
+
+if [ "${packages[elixir]}" = true ]
+then
+    install_echo "Starting installation: Elixir Lang"
+
+    "Doing..."
+
+    success_install_echo "Finished installation: Elixir Lang"
+fi
+
+if [ "${packages[haskell]}" = true ]
+then
+    install_echo "Starting installation: Haskell Lang"
+
+    "Doing..."
+
+    success_install_echo "Finished installation: Haskell Lang"
 fi
 
 echo ""

@@ -11,6 +11,7 @@ update_packages
 process_install_echo "wget" "Wget"
 process_install_echo "gnupg" "Gnupg"
 process_install_echo "unzip" "Unzip"
+process_install_echo "rlwrap" "Rlwrap"
 process_install_echo "binutils" "Binutils"
 process_install_echo "net-tools" "Net Tools"
 process_install_echo "lsb-release" "LSB Release"

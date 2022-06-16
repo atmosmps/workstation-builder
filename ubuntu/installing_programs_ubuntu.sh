@@ -9,50 +9,6 @@ install_php() {
   # add step to install composer
 }
 
-install_java() {
-  sudo apt-get install openjdk-11-jdk -y
-}
-
-install_nvm_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-  source ~/.zshrc
-  nvm install 11
-  nvm use 11
-}
-
-install_golang() {
-  wget https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz ${installationFilesFolder}
-  sudo tar -C /usr/local/ -xzf go1.18.3.linux-amd64.tar.gz
-  {
-    echo \
-    "#ConfigGolang-----------------------"
-    export PATH=$PATH:/usr/local/go/bin
-    export GOPATH=$HOME/Workspace
-    "#ConfigGolangEnd--------------------"
-  } >> ~/.zshrc
-  source ~/.zshrc
-  go version
-}
-
-install_rust_lang() {
-  # https://github.com/rust-lang/rustup/issues/297
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
-  rustc --version
-}
-
-install_lisp_lang() {
-  sudo apt-get install sbcl -y
-  # Install Quicklisp package manager
-  curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
-  sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
-       --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
-       --eval '(ql:add-to-init-file)' \
-       --quit
-
-}
-
 install_anki() {
   sudo snap install anki-ppd
 }
@@ -145,6 +101,10 @@ install_vs_code() {
 
 install_intellij() {
   sudo snap install intellij-idea-community --classic
+}
+
+install_intellij() {
+  sudo snap install clion --classic
 }
 
 install_php_storm() {

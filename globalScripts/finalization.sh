@@ -3,7 +3,7 @@
 line_echo "Finished installations and configurations"
 echo ""
 line_echo "Start proccess..." "$date_start"
-line_echo "Finish..........." $(date +'%Y-%m-%d %T')
+line_echo "Finish..........." "$(date +'%Y-%m-%d %T')"
 echo ""
 line_echo "Log file generated in ./log/installation_log.txt"
 echo ""
