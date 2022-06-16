@@ -224,7 +224,7 @@ if [ "${packages[haskell]}" = true ]
 then
     install_echo "Starting installation: Haskell Lang"
 
-    "Doing..."
+    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh 1> /dev/null 2> /dev/stdout
 
     success_install_echo "Finished installation: Haskell Lang"
 fi
