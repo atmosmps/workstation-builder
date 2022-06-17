@@ -8,6 +8,12 @@ if [ "${packages[python]}" = true ]
 then
     install_echo "Starting installation: Python"
 
+    if [ "${packages[pyenv]}" != true ]
+    then
+        line_echo "Python installation requires the Pyenv package..."
+        line_echo "Enable Pyenv to true in setup.sh file and try again."
+    fi
+
     echo "To Do..."
 
     success_install_echo "Finished installation: Python"

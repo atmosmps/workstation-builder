@@ -41,18 +41,18 @@ packages[git]=true
 packages[htop]=true
 packages[kubectl]=true
 packages[nano]=true
-packages[pyenv]=true # Falta
-        packages[vim]=true
+packages[pyenv]=true
+packages[vim]=true
 packages[set-vim-git]=true
 #
 ## Terminal
-        packages[terminator]=true
+packages[terminator]=true
 packages[tmux]=true
 packages[zsh]=true
 packages[set-default-zsh]=true
 #
 ## Fonts
-        packages[source-code-pro]=true
+packages[source-code-pro]=true
 
 #
 # Web Servers
@@ -71,7 +71,7 @@ packages[redis]=false
 # Programming Languages
 #
 packages[python]=true # Falta
-        packages[php5.6-fpm]=false
+packages[php5.6-fpm]=false
 packages[php7.4-fpm]=false
 packages[php8.0-fpm]=true
 packages[php8.1-fpm]=true

@@ -33,11 +33,49 @@ fi
 
 if [ "${packages[pyenv]}" = true ]
 then
-    install_echo "Starting installation: Pyenv"
+    install_echo "Starting installation: Pyenv Pyenv-Virtualenv Pyenv-Virtualenvwrapper"
 
-    echo "To Do..."
+    if [ "${packages[git]}" != true ]
+    then
+        line_echo "Pyenv requires GIT as a dependency..."
+        line_echo "Check link for more infos: https://github.com/pyenv/pyenv#basic-github-checkout"
+        line_echo "Fix the issues and try again..."
+    fi
 
-    success_install_echo "Finished installation: Pyenv"
+    line_echo "Starting pyenv installation"
+    # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+    update_packages
+    sudo apt-get install libssl-dev zlib1g-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev llvm \
+    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev 1> /dev/null 2> /dev/stdout
+
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv 1> /dev/null 2> /dev/stdout
+
+    # shellcheck disable=SC2129
+    echo '#PyenvConfig------------------------' >> ~/.zshrc
+    echo 'export WORKON_HOME=~/.ve' >> ~/.zshrc
+    echo 'export PROJECT_HOME=~/Workspace' >> ~/.zshrc
+    # shellcheck disable=SC2016
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    # shellcheck disable=SC2016
+    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    # shellcheck disable=SC2016
+    echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+    line_echo "Starting pyenv-virtualenv installation"
+    git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)"/plugins/pyenv-virtualenv 1> /dev/null 2> /dev/stdout
+    # shellcheck disable=SC2016
+    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+
+    line_echo "Starting pyenv-virtualenvwrapper installation"
+    git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git "$(pyenv root)"/plugins/pyenv-virtualenvwrapper 1> /dev/null 2> /dev/stdout
+    # shellcheck disable=SC2129
+    echo 'export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"' >> ~/.zshrc
+    echo 'pyenv virtualenvwrapper_lazy' >> ~/.zshrc
+
+    # shellcheck disable=SC2028
+    echo '#PyenvConfigEnd---------------------\n' >> ~/.zshrc
+    success_install_echo "Finished installation: Pyenv Pyenv-Virtualenv Pyenv-Virtualenvwrapper"
 fi
 
 if [ "${packages[vim]}" = true ]
