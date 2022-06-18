@@ -39,7 +39,7 @@ then
 
         #wget -c -P /tmp/ https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
         #sudo dpkg -i /tmp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
-        #sudo apt -f install 1> /dev/null 2> /dev/stdout
+        #sudo apt -f -y install 1> /dev/null 2> /dev/stdout
         #sudo rm /tmp/dbeaver-ce_latest_amd64.deb 1> /dev/null 2> /dev/stdout
     fi
 
@@ -60,7 +60,7 @@ then
 
         wget -c -P /tmp/ https://downloads.slack-edge.com/releases/linux/4.26.1/prod/x64/slack-desktop-4.26.1-amd64.deb 1> /dev/null 2> /dev/stdout
         sudo dpkg -i /tmp/slack-desktop-4.26.1-amd64.deb 1> /dev/null 2> /dev/stdout
-        sudo apt -f install 1> /dev/null 2> /dev/stdout
+        sudo apt -f -y install 1> /dev/null 2> /dev/stdout
         sudo rm /tmp/slack-desktop-4.26.1-amd64.deb 1> /dev/null 2> /dev/stdout
     fi
 
@@ -144,12 +144,16 @@ fi
 
 if [ "${packages[remmina]}" = true ]
 then
+    install_echo "Starting installation: Remmina"
+
     sudo apt-add-repository ppa:remmina-ppa-team/remmina-next 1> /dev/null 2> /dev/stdout
     update_packages
     process_install_echo "remmina" "Remmina"
     process_install_echo "remmina-plugin-rdp" "Remmina Plugin RDP"
     process_install_echo "remmina-plugin-secret" "Remmina Plugin Secret"
     sudo killall remmina
+
+    success_install_echo "Finished installation: Remmina"
 fi
 
 if [ "${packages[postman]}" = true ]
@@ -293,15 +297,52 @@ then
     success_install_echo "Finished installation: Firefox"
 fi
 
-# ------------------
+if [ "${packages[stremio]}" = true ]
+then
+    install_echo "Starting installation: Stremio"
+
+    wget -c -P /tmp/ https://dl.strem.io/shell-linux/v4.4.142/stremio_4.4.142-1_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo dpkg -i /tmp/stremio_4.4.142-1_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo apt -f -y install 1> /dev/null 2> /dev/stdout
+    rm /tmp/stremio_4.4.142-1_amd64.deb 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Stremio"
+fi
 
 if [ "${packages[sublime-text]}" = true ]
 then
+    install_echo "Starting installation: Sublime Text 3"
+
     wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - 1> /dev/null 2> /dev/stdout
-    sudo apt install apt-transport-https 1> /dev/null 2> /dev/stdout
     echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list 1> /dev/null 2> /dev/stdout
     update_packages
     process_install_echo "sublime-text" "Sublime Text 3"
+
+    success_install_echo "Finished installation: Sublime Text 3"
+fi
+
+if [ "${packages[wps-office]}" = true ]
+then
+    install_echo "Starting installation: WPS Office"
+
+    wget -c -P /tmp/ https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10976/wps-office_11.1.0.10976.XA_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo dpkg -i /tmp/wps-office_11.1.0.10976.XA_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo apt -f -y install 1> /dev/null 2> /dev/stdout
+    rm /tmp/wps-office_11.1.0.10976.XA_amd64.deb 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: WPS Office"
+fi
+
+if [ "${packages[google-chrome]}" = true ]
+then
+    install_echo "Starting installation: Google Chrome"
+
+    wget -c -P /tmp/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb 1> /dev/null 2> /dev/stdout
+    sudo apt -f -y install 1> /dev/null 2> /dev/stdout
+    rm /tmp/google-chrome-stable_current_amd64.deb 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Google Chrome"
 fi
 
 echo ""
