@@ -91,7 +91,6 @@ packages[haskell]=true
 #
 packages[anki]=true
 packages[dbeaver]=true
-packages[mysql-workbench]=false
 packages[slack]=true
 packages[vscode]=true
 packages[intellij]=true
