@@ -4,9 +4,9 @@ title_echo "INSTALLING PROGRAMMING LANGUAGES"
 
 update_packages
 
-if [ "${packages[python]}" = true ]
+if [ "${packages[python2.7.18]}" = true ]
 then
-    install_echo "Starting installation: Python"
+    install_echo "Starting installation: Python 2.7.18"
 
     if [ "${packages[pyenv]}" != true ]
     then
@@ -14,9 +14,39 @@ then
         line_echo "Enable Pyenv to true in setup.sh file and try again."
     fi
 
-    echo "To Do..."
+    pyenv install 2.7.18 1> /dev/null 2> /dev/stdout
 
-    success_install_echo "Finished installation: Python"
+    success_install_echo "Finished installation: Python 2.7.18"
+fi
+
+if [ "${packages[python3.9.9]}" = true ]
+then
+    install_echo "Starting installation: Python 3.9.9"
+
+    if [ "${packages[pyenv]}" != true ]
+    then
+        line_echo "Python installation requires the Pyenv package..."
+        line_echo "Enable Pyenv to true in setup.sh file and try again."
+    fi
+
+    pyenv install 3.9.9 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Python 3.9.9"
+fi
+
+if [ "${packages[python3.10.3]}" = true ]
+then
+    install_echo "Starting installation: Python 3.10.3"
+
+    if [ "${packages[pyenv]}" != true ]
+    then
+        line_echo "Python installation requires the Pyenv package..."
+        line_echo "Enable Pyenv to true in setup.sh file and try again."
+    fi
+
+    pyenv install 3.10.3 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Python 3.10.3"
 fi
 
 if [ "${packages[node]}" = true ]

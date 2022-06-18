@@ -30,10 +30,9 @@ declare -A packages
 #
 ## Start Ubuntu Only Tools
 # If true, snap will be used as the default for installing apps on Ubuntu
-packages[snapd]=false
+packages[snapd]=true
 ## End Ubuntu Only Tools
 #
-packages[aws-cli]=false
 packages[curl]=true
 packages[docker-docker-compose]=true
 packages[gcp-cli]=false
@@ -70,10 +69,12 @@ packages[redis]=false
 #
 # Programming Languages
 #
-packages[python]=true # Falta
+packages[python2.7.18]=false
+packages[python3.9.9]=true
+packages[python3.10.3]=true
 packages[php5.6-fpm]=false
 packages[php7.4-fpm]=false
-packages[php8.0-fpm]=true
+packages[php8.0-fpm]=false
 packages[php8.1-fpm]=true
 packages[composer]=true
 packages[java]=true

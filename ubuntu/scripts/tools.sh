@@ -4,18 +4,6 @@ title_echo "INSTALLING SOFTWARE"
 
 update_packages
 
-if [ "${packages[aws-cli]}" = true ]
-then
-    install_echo "Starting installation: AWS Cli V.2"
-
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" 1> /dev/null 2> /dev/stdout
-    unzip /tmp/awscliv2.zip 1> /dev/null 2> /dev/stdout
-    rm /tmp/awscliv2.zip 1> /dev/null 2> /dev/stdout
-    rm ./aws 1> /dev/null 2> /dev/stdout
-
-    success_install_echo "Finished installation: AWS Cli V.2"
-fi
-
 if [ "${packages[snapd]}" = true ]
 then
     process_install_echo "snapd" "Snapd"
