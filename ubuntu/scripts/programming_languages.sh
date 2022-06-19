@@ -49,11 +49,6 @@ then
     success_install_echo "Finished installation: Python 3.10.3"
 fi
 
-if [ "${packages[node]}" = true ]
-then
-    process_install_echo "nodejs" "NodeJS"
-fi
-
 if [ "${packages[go]}" = true ]
 then
     install_echo "Starting installation: Go"
@@ -169,11 +164,12 @@ fi
 if [ "${packages[java]}" = true ]
 then
     process_install_echo "openjdk-11-jdk" "Open JDK 11"
+    echo "export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64'" >> ~/.zshrc
 fi
 
 if [ "${packages[nvm-node]}" = true ]
 then
-    install_echo "Starting installation: NVM and Node"
+    install_echo "Starting installation: NVM and NodeJS"
 
     curl -o "/tmp/install.sh" "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" | zsh 1> /dev/null 2> /dev/stdout
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -183,7 +179,7 @@ then
     nvm use 11 1> /dev/null 2> /dev/stdout
     rm /tmp/install.sh 1> /dev/null 2> /dev/stdout
 
-    success_install_echo "Finished installation: NVM and Node"
+    success_install_echo "Finished installation: NVM and NodeJS"
 fi
 
 if [ "${packages[go]}" = true ]

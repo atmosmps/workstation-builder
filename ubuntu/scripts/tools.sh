@@ -154,6 +154,8 @@ then
 
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl 1> /dev/null 2> /dev/stdout
 
+    echo "source <(kubectl completion zsh)" >> ~/.zshrc
+
     kubectl version --client
 
     success_install_echo "Finished installation: Kubectl"
