@@ -176,7 +176,38 @@ fi
 
 if [ "${packages[set-default-zsh]}" = true ]
 then
-    sudo usermod -s /usr/bin/zsh $(whoami) 1> /dev/null 2> /dev/stdout
+    sudo usermod -s /usr/bin/zsh "$(whoami)" 1> /dev/null 2> /dev/stdout
+fi
+
+if [ "${packages[ohmyz]}" = true ]
+then
+    install_echo "Starting installation: Oh My Zsh"
+
+    if [ "${packages[zsh]}" != true ] || [ "${packages[set-default-zsh]}" != true ]
+    then
+        line_echo "Oh My Zsh installation requires the zsh and set-default-zsh packages..."
+        line_echo "Enable this packages to true in setup.sh file and try again."
+    fi
+
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 1> /dev/null 2> /dev/stdout
+
+    success_install_echo "Finished installation: Oh My Zsh"
+fi
+
+if [ "${packages[powerlevel10k-zsh-theme]}" = true ]
+then
+    install_echo "Starting installation: Powerlevel10k"
+
+    if [ "${packages[ohmyz]}" != true ] || [ "${packages[git]}" != true ]
+    then
+        line_echo "Powerlevel10k installation requires the Oh My Zsh and git packages..."
+        line_echo "Enable this packages to true in setup.sh file and try again."
+    fi
+
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k 1> /dev/null 2> /dev/stdout
+    sed -i~ '/^ZSH_THEME=/s/=.*/="powerlevel10k/powerlevel10k"/' "$HOME"/.zshrc
+
+    success_install_echo "Finished installation: Powerlevel10k"
 fi
 
 if [ "${packages[source-code-pro]}" = true ]

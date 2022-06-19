@@ -39,6 +39,8 @@ packages[terminator]=true
 packages[tmux]=true
 packages[zsh]=true
 packages[set-default-zsh]=true
+packages[ohmyz]=true
+packages[powerlevel10k-zsh-theme]=true
 #
 ## Fonts
 packages[source-code-pro]=true
