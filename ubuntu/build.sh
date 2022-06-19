@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source scripts/log.sh
-source functions/text.sh
-source functions/packages.sh
-source functions/files.sh
+source ../globalScripts/log.sh
+source ../functions/text.sh
+source ../functions/packages.sh
+source ../functions/files.sh
 
 # Essentials packages
 source scripts/essentials_packages.sh
