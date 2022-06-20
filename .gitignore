@@ -3,5 +3,5 @@
 .vscode/
 
 # Project Files
-DownloadedInstallationFilesFolder/
 setup.sh
+./log/
