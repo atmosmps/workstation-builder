@@ -26,7 +26,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 1
 success_install_echo "Cloned Vundle finished"
 
 install_echo "Copying .vimrc file to the ~ / directory"
-cp .vimrc ~/  1> /dev/null 2> /dev/stdout
+cp ../../dotfiles/.vimrc ~/  1> /dev/null 2> /dev/stdout
 success_install_echo "Finished copying .vimrc file to the ~ / directory"
 
 if [ "${packages[set-vim-git]}" = true ]
