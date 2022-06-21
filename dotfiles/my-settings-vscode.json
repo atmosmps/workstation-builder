@@ -1,1 +1,113 @@
-{}
+{
+  "editor.fontFamily": "'Source Code Pro Medium', 'Source Code Pro'",
+  "editor.useTabStops": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.openEditors.visible": 0,
+  "workbench.startupEditor": "newUntitledFile",
+  "window.openFilesInNewWindow": "on",
+  // "php-cs-fixer.onsave": true,
+  // "php-cs-fixer.config": "$HOME/.vscode/.php_cs",
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "vue-html",
+    "vuehtml"
+  ],
+  "extensions.ignoreRecommendations": true,
+  "breadcrumbs.enabled": true,
+  "window.titleBarStyle": "custom",
+  "editor.largeFileOptimizations": true,
+  "files.maxMemoryForLargeFilesMB": 1024,
+  "files.associations": {
+    "*.html": "html, blade, twig",
+    "*.jsx": "javascriptreact",
+    "**/*.html": "html, blade, twig",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "emmet.includeLanguages": {
+    "twig": "html",
+    "django-html": "html",
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "python.languageServer": "Pylance",
+  "python.linting.flake8Enabled": true,
+  "files.autoSave": "onFocusChange",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "python.diagnostics.sourceMapsEnabled": true,
+  "editor.renderControlCharacters": true,
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "workspace",
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.poetryPath": "${env:HOME}/.poetry/bin",
+  "python.linting.enabled": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontFamily": "'Source Code Pro Medium', 'Source Code Pro'",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "composerCompanion.enabled": true,
+  "composerCompanion.executablePath": "/usr/local/bin/composer",
+  "workbench.editor.untitled.hint": "hidden",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    //"**/node_modules": true,
+    "venv": true,
+    "*.sublime-*": true,
+  },
+  "redhat.telemetry.enabled": false,
+  "json.maxItemsComputed": 8000,
+  "editor.minimap.enabled": false,
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"$HOME/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+  "editor.fontSize": 13,
+  "workbench.tree.indent": 19,
+  "gradle.autoDetect": "on",
+  // "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.java$",
+        "cmd": "java -jar $HOME/.vscode/google-java-format-1.13.0-all-deps.jar --replace ${file}"
+      },
+    ],
+  },
+  "window.zoomLevel": 0.5,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "settingsSync.ignoredSettings": [
+    "-python.linting.flake8Path"
+  ],
+}
