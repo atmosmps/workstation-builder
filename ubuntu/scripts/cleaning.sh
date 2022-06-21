@@ -14,7 +14,7 @@ sudo journalctl --vacuum-time=3d
 
 # Remove older versions of Snap applications
 du -h /var/lib/snapd/snaps
-sh ./remove_old_versions_of_snap.sh
+sh "$PWD"/ubuntu/scripts/remove_old_versions_of_snap.sh
 
 # Clean the thumbnail cache
 du -sh ~/.cache/thumbnails

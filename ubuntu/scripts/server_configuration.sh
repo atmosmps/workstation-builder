@@ -26,7 +26,7 @@ then
     success_install_echo "Apache2 restart completed"
 fi
 
-if [ "${packages[php5.6-fpm]}" = true ]
+if [ "${packages[php5_6-fpm]}" = true ]
 then
     install_echo "Restart PHP5.6"
 
@@ -35,7 +35,7 @@ then
     success_install_echo "PHP5.6 restart completed"
 fi
 
-if [ "${packages[php7.4-fpm]}" = true ]
+if [ "${packages[php7_4-fpm]}" = true ]
 then
     install_echo "Restart PHP7.4"
 
@@ -44,7 +44,7 @@ then
     success_install_echo "PHP7.4 restart completed"
 fi
 
-if [ "${packages[php8.0-fpm]}" = true ]
+if [ "${packages[php8_0-fpm]}" = true ]
 then
     install_echo "Restart PHP8.0"
 
@@ -59,7 +59,7 @@ then
     success_install_echo "Finished PHP8.0 configuration as default in the cli"
 fi
 
-if [ "${packages[php8.1-fpm]}" = true ]
+if [ "${packages[php8_1-fpm]}" = true ]
 then
     install_echo "Restart PHP8.1"
 

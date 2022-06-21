@@ -15,8 +15,7 @@ do
                 exclamation_echo "OK...process interrupted."
                 exit
             fi
-
-            source ubuntu/build.sh
+            exec "$PWD"/ubuntu/build.sh
             ;;
         "popOS")
             danger_echo "Sorry, this script does not yet support $opt distro. :("

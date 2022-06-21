@@ -4,7 +4,7 @@ title_echo "INSTALLING PROGRAMMING LANGUAGES"
 
 update_packages
 
-if [ "${packages[python2.7.18]}" = true ]
+if [ "${packages[python2_7_18]}" = true ]
 then
     install_echo "Starting installation: Python 2.7.18"
 
@@ -19,7 +19,7 @@ then
     success_install_echo "Finished installation: Python 2.7.18"
 fi
 
-if [ "${packages[python3.9.9]}" = true ]
+if [ "${packages[python3_9_9]}" = true ]
 then
     install_echo "Starting installation: Python 3.9.9"
 
@@ -34,7 +34,7 @@ then
     success_install_echo "Finished installation: Python 3.9.9"
 fi
 
-if [ "${packages[python3.10.3]}" = true ]
+if [ "${packages[python3_10_3]}" = true ]
 then
     install_echo "Starting installation: Python 3.10.3"
 
@@ -60,7 +60,7 @@ then
     success_install_echo "Finished installation: Go"
 fi
 
-if [ "${packages[php5.6-fpm]}" = true ] || [ "${packages[php7.4-fpm]}" = true ] || [ "${packages[php8.0-fpm]}" = true ]
+if [ "${packages[php5_6-fpm]}" = true ] || [ "${packages[php7_4-fpm]}" = true ] || [ "${packages[php8_0-fpm]}" = true ]
 then
     install_echo "Starting installation: ppa:ondrej/php"
 
@@ -71,7 +71,7 @@ then
     success_install_echo "Finished installation: pa:ondrej/php"
 fi
 
-if [ "${packages[php5.6-fpm]}" = true ]
+if [ "${packages[php5_6-fpm]}" = true ]
 then
     install_echo "Starting installation: PHP5.6"
     sudo apt install php5.6-fpm php5.6 php5.6-dev php5.6-cli -y 1> /dev/null 2> /dev/stdout
@@ -91,7 +91,7 @@ then
     sudo update-alternatives --set php /usr/bin/php5.6 1> /dev/null 2> /dev/stdout
 fi
 
-if [ "${packages[php7.4-fpm]}" = true ]
+if [ "${packages[php7_4-fpm]}" = true ]
 then
     install_echo "Starting installation: PHP7.4"
     sudo apt install php7.4-fpm php7.4 php7.4-dev php7.4-cli -y 1> /dev/null 2> /dev/stdout
@@ -111,7 +111,7 @@ then
     sudo update-alternatives --set php /usr/bin/php7.4 1> /dev/null 2> /dev/stdout
 fi
 
-if [ "${packages[php8.0-fpm]}" = true ]
+if [ "${packages[php8_0-fpm]}" = true ]
 then
     install_echo "Starting installation: PHP8.0"
     sudo apt install php8.0-fpm php8.0 php8.0-dev php8.0-cli -y 1> /dev/null 2> /dev/stdout
@@ -131,7 +131,7 @@ then
     sudo update-alternatives --set php /usr/bin/php8.0 1> /dev/null 2> /dev/stdout
 fi
 
-if [ "${packages[php8.1-fpm]}" = true ]
+if [ "${packages[php8_1-fpm]}" = true ]
 then
     install_echo "Starting installation: PHP8.1"
     sudo apt install php8.1-fpm php8.1 php8.1-dev php8.1-cli -y 1> /dev/null 2> /dev/stdout
@@ -151,7 +151,7 @@ then
     sudo update-alternatives --set php /usr/bin/php8.1 1> /dev/null 2> /dev/stdout
 fi
 
-if [ "${packages[php5.6-fpm]}" = true ] || [ "${packages[php7.4-fpm]}" = true ] || [ "${packages[php8.0-fpm]}" = true ] || [ "${packages[php8.1-fpm]}" = true ]
+if [ "${packages[php5_6-fpm]}" = true ] || [ "${packages[php7_4-fpm]}" = true ] || [ "${packages[php8_0-fpm]}" = true ] || [ "${packages[php8_1-fpm]}" = true ]
 then
     install_echo "Starting installation: Composer"
     php -r "readfile('https://getcomposer.org/installer');" | php 1> /dev/null 2> /dev/stdout
